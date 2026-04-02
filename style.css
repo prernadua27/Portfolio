@@ -48,9 +48,11 @@ body {
     font-family: var(--font-body);
     background-color: var(--bg-base);
     color: var(--text-primary);
-    line-height: 1.6;
+    line-height: 1.7;
     overflow-x: hidden;
     position: relative;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 ::selection {
@@ -172,20 +174,19 @@ a {
 /* glassmorphism card */
 .glass-card {
     background: var(--bg-surface);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     border: 1px solid var(--border-color);
-    border-radius: 16px;
+    border-radius: 18px;
     padding: 2rem;
     transition: var(--transition);
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.04);
 }
 
 .glass-card:hover {
     background: var(--bg-surface-hover);
-    border-color: rgba(255, 255, 255, 0.15);
-    /* Removed transform: translateY(-5px); to avoid conflict with JS 3D Tilt effect */
-    box-shadow: var(--shadow-glow);
+    border-color: rgba(59, 130, 246, 0.2);
+    box-shadow: var(--shadow-glow), 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
 /* Buttons */
@@ -195,13 +196,14 @@ a {
     justify-content: center;
     gap: 0.5rem;
     padding: 0.875rem 1.75rem;
-    border-radius: 8px;
+    border-radius: 50px;
     font-family: var(--font-heading);
     font-weight: 600;
-    font-size: 1rem;
+    font-size: 0.95rem;
     cursor: pointer;
     transition: var(--transition);
     text-decoration: none;
+    letter-spacing: 0.01em;
 }
 
 .btn-small {
@@ -309,10 +311,28 @@ Navigation
     font-size: 0.95rem;
     font-weight: 500;
     color: var(--text-secondary);
+    position: relative;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--accent-primary);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+    border-radius: 1px;
 }
 
 .nav-link:hover {
     color: var(--text-primary);
+}
+
+.nav-link:hover::after {
+    width: 100%;
 }
 
 .btn-small.nav-link {
@@ -464,9 +484,16 @@ Projects Section
     font-family: var(--font-heading);
     font-size: 0.85rem;
     color: var(--accent-primary);
-    background: rgba(59, 130, 246, 0.1);
-    padding: 0.25rem 0.75rem;
+    background: rgba(59, 130, 246, 0.08);
+    border: 1px solid rgba(59, 130, 246, 0.15);
+    padding: 0.3rem 0.85rem;
     border-radius: 20px;
+    transition: var(--transition);
+}
+
+.tech-stack li:hover {
+    background: rgba(59, 130, 246, 0.18);
+    border-color: rgba(59, 130, 246, 0.3);
 }
 
 .project-links {
@@ -632,6 +659,7 @@ Footer Section
     text-align: center;
     max-width: 800px;
     margin: 0 auto;
+    border-top: 1px solid var(--border-color);
 }
 
 .footer-title {
