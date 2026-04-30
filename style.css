@@ -344,7 +344,7 @@ Navigation
     list-style: none;
     display: flex;
     align-items: center;
-    gap: 1.5rem;
+    gap: 1rem;
 }
 
 .nav-link {
